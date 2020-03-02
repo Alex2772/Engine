@@ -1,6 +1,8 @@
 #include "VAO.h"
 #include <gl.h>
 
+#include <glm/glm.hpp>
+
 GL::VAO::VAO()
 {
 	glGenVertexArrays(1, &mVao);
@@ -27,13 +29,57 @@ void GL::VAO::draw(size_t count)
 	}
 }
 
+/**
+ * \brief 1-компонентный массив
+ * \param data 
+ */
 void GL::VAO::addVertexBufferObject(const std::vector<float>& data)
 {
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(mBuffers.size(), 1, GL_FLOAT, GL_FALSE, 0, nullptr);
+	mBuffers.push_back(vbo);
+}
+
+/**
+ * \brief 2-компонентный массив
+ * \param data 
+ */
+void GL::VAO::addVertexBufferObject(const std::vector<glm::vec2>& data)
+{
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(glm::vec2), data.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(mBuffers.size(), 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+	mBuffers.push_back(vbo);
+}
+/**
+ * \brief 3-компонентный массив
+ * \param data 
+ */
+void GL::VAO::addVertexBufferObject(const std::vector<glm::vec3>& data)
+{
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(glm::vec3), data.data(), GL_STATIC_DRAW);
 	glVertexAttribPointer(mBuffers.size(), 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+	mBuffers.push_back(vbo);
+}
+/**
+ * \brief 4-компонентный массив
+ * \param data 
+ */
+void GL::VAO::addVertexBufferObject(const std::vector<glm::vec4>& data)
+{
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(glm::vec4), data.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(mBuffers.size(), 4, GL_FLOAT, GL_FALSE, 0, nullptr);
 	mBuffers.push_back(vbo);
 }
 
