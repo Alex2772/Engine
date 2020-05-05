@@ -13,9 +13,9 @@ GL::Program::Program(const std::string& name)
 GL::Program::~Program()
 {
 	glDetachShader(mProgram, mVertexShader);
-	glDetachShader(mProgram, mVertexShader);
+	glDetachShader(mProgram, mFragmentShader);
 	glDeleteShader(mVertexShader);
-	glDeleteShader(mVertexShader);
+	glDeleteShader(mFragmentShader);
 	glDeleteProgram(mProgram);
 }
 
