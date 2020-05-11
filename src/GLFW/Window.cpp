@@ -41,9 +41,10 @@ void Window::loop()
 	// неявно задаём трёхкомпонетные векторы
 	// вершины
 	vao.addVertexBufferObject({
-		{0, 0.5f, 0},
-		{-0.5f, -0.5f, 0},
-		{0.5f, -0.5f, 0}
+		{-0.5f, 0.5f, 0.f},
+		{-0.5f, -0.5f, 0.f},
+		{0.5f, 0.5f, 0.f},
+		{0.5f, -0.5f, 0.f},
 	});
 
 	// 3х компонентный массив
@@ -52,7 +53,14 @@ void Window::loop()
 	vao.addVertexBufferObject({
 		{1, 0, 0}, // красный
 		{0, 0, 1}, // синий
-		{0, 1, 0} // зелёный
+		{0, 1, 0}, // зелёный
+		{1, 0, 0}, // красный
+	});
+
+	// индексы (см. 4 туториал)
+	vao.addIndices({
+		0, 1, 2,
+		2, 1, 3
 	});
 
 	GL::Program first("first");
@@ -71,7 +79,7 @@ void Window::loop()
 		
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
-		vao.draw(3);
+		vao.draw();
 		glfwSwapBuffers(mWindow);
 		glfwPollEvents();
 	}

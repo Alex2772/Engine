@@ -11,7 +11,7 @@ uniform float animation;
 
 void main() {
 	// устарело -> gl_Color = vec4(1, 1, 1, 1);
-	// дл¤ вывода цвета нужно объ¤вить один выход
+	// для вывода цвета нужно объявить один выход
 	
 	
 	color = vec4(pass_color * animation, 1);
