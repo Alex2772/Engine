@@ -91,15 +91,26 @@ GLuint GL::Program::loadShader(const std::string& path, GLenum shaderType)
 	// да, тут именно указатель на указатель, char**
 	glShaderSource(shader, 1, &c, nullptr);
 
-	// получить результат компиляции (успешно/неуспешно)
+
+	// скомпилировать шейдер
+	glCompileShader(shader);
+
+	// получить результат компиляции (1 = успешно; 0 = неуспешно)
 	GLint status;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
 	char buf[0x1000];
 	GLsizei len;
 	glGetShaderInfoLog(shader, sizeof(buf), &len, buf);
+
+	// если есть какие-то ошибки или ворнинги
 	if (len > 0)
 	{
-		std::cout << "Failed to compile shader " << path << ":" << std::endl << buf;
+		std::cout << path << ":" << std::endl << buf;
+	}
+
+	if (!status) {
+	    // если не удалось скомпилировать шейдер, выплюнем исключение
+	    throw std::runtime_error("could not compile shader: " + path);
 	}
 	
 	return shader;

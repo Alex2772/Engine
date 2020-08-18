@@ -16,10 +16,10 @@ void GL::VAO::bind()
 }
 
 /**
- * \brief Рисует буфер. Перед отрисовкой убедитесь, что вы указали индексы
- *		  при помощи функции GL::VAO::indices.
+ * \brief Р РёСЃСѓРµС‚ Р±СѓС„РµСЂ. РџРµСЂРµРґ РѕС‚СЂРёСЃРѕРІРєРѕР№ СѓР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ РІС‹ СѓРєР°Р·Р°Р»Рё РёРЅРґРµРєСЃС‹
+ *		  РїСЂРё РїРѕРјРѕС‰Рё С„СѓРЅРєС†РёРё GL::VAO::indices.
  *		  
- * \param type Примитив, который мы рисуем. По умолчанию - треугольники.
+ * \param type РџСЂРёРјРёС‚РёРІ, РєРѕС‚РѕСЂС‹Р№ РјС‹ СЂРёСЃСѓРµРј. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - С‚СЂРµСѓРіРѕР»СЊРЅРёРєРё.
  *	      - GL_TRIANGLES
  *	      - GL_TRIANGLE_STRIP
  *	      - GL_LINES
@@ -45,7 +45,7 @@ void GL::VAO::draw(unsigned type)
 }
 
 /**
- * \brief 1-компонентный массив
+ * \brief 1-РєРѕРјРїРѕРЅРµРЅС‚РЅС‹Р№ РјР°СЃСЃРёРІ
  * \param data 
  */
 void GL::VAO::addVertexBufferObject(const std::vector<float>& data)
@@ -59,7 +59,7 @@ void GL::VAO::addVertexBufferObject(const std::vector<float>& data)
 }
 
 /**
- * \brief 2-компонентный массив
+ * \brief 2-РєРѕРјРїРѕРЅРµРЅС‚РЅС‹Р№ РјР°СЃСЃРёРІ
  * \param data 
  */
 void GL::VAO::addVertexBufferObject(const std::vector<glm::vec2>& data)
@@ -72,7 +72,7 @@ void GL::VAO::addVertexBufferObject(const std::vector<glm::vec2>& data)
 	mBuffers.push_back(vbo);
 }
 /**
- * \brief 3-компонентный массив
+ * \brief 3-РєРѕРјРїРѕРЅРµРЅС‚РЅС‹Р№ РјР°СЃСЃРёРІ
  * \param data 
  */
 void GL::VAO::addVertexBufferObject(const std::vector<glm::vec3>& data)
@@ -85,7 +85,7 @@ void GL::VAO::addVertexBufferObject(const std::vector<glm::vec3>& data)
 	mBuffers.push_back(vbo);
 }
 /**
- * \brief 4-компонентный массив
+ * \brief 4-РєРѕРјРїРѕРЅРµРЅС‚РЅС‹Р№ РјР°СЃСЃРёРІ
  * \param data 
  */
 void GL::VAO::addVertexBufferObject(const std::vector<glm::vec4>& data)
@@ -99,18 +99,18 @@ void GL::VAO::addVertexBufferObject(const std::vector<glm::vec4>& data)
 }
 
 /**
- * \brief Вставить буфер индексов
+ * \brief Р’СЃС‚Р°РІРёС‚СЊ Р±СѓС„РµСЂ РёРЅРґРµРєСЃРѕРІ
  * \param data 
  */
 void GL::VAO::addIndices(const std::vector<unsigned>& data)
 {
-	assert(mIndicesBuffer == 0); // мы не можем создать ещё один буфер
+	assert(mIndicesBuffer == 0); // РјС‹ РЅРµ РјРѕР¶РµРј СЃРѕР·РґР°С‚СЊ РµС‰С‘ РѕРґРёРЅ Р±СѓС„РµСЂ
 
 	mIndicesCount = data.size();
 	
 	glGenBuffers(1, &mIndicesBuffer);
 
-	// обратите внимание, что мы используем не GL_ARRAY_BUFFER, а GL_ELEMENT_ARRAY_BUFFER
+	// РѕР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ, С‡С‚Рѕ РјС‹ РёСЃРїРѕР»СЊР·СѓРµРј РЅРµ GL_ARRAY_BUFFER, Р° GL_ELEMENT_ARRAY_BUFFER
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndicesBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, data.size() * sizeof(unsigned), data.data(), GL_STATIC_DRAW);
 }

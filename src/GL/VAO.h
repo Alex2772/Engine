@@ -8,22 +8,22 @@ namespace GL
 	{
 	private:
 		/**
-		 * \brief Объект VAO
+		 * \brief РћР±СЉРµРєС‚ VAO
 		 */
 		unsigned int mVao;
 
 		/**
-		 * \brief Обычные буферы атрибутов
+		 * \brief РћР±С‹С‡РЅС‹Рµ Р±СѓС„РµСЂС‹ Р°С‚СЂРёР±СѓС‚РѕРІ
 		 */
 		std::vector<unsigned int> mBuffers;
 
 		/**
-		 * \brief Буфер индексов
+		 * \brief Р‘СѓС„РµСЂ РёРЅРґРµРєСЃРѕРІ
 		 */
 		unsigned mIndicesBuffer = 0;
 
 		/**
-		 * \brief Количество индексов
+		 * \brief РљРѕР»РёС‡РµСЃС‚РІРѕ РёРЅРґРµРєСЃРѕРІ
 		 */
 		size_t mIndicesCount = 0;
 		
