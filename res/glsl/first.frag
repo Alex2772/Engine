@@ -5,15 +5,17 @@ out vec4 color;
 
 // принимаем от вершинного шейдера цвет
 // название и тип должны совпадать с вершинным шейдером
-in vec3 pass_color;
+in vec2 pass_uv;
 
-uniform float animation;
+
+// принимаем текстуру
+uniform sampler2D tex;
 
 void main() {
 	// устарело -> gl_Color = vec4(1, 1, 1, 1);
 	// для вывода цвета нужно объявить один выход
 	
 	
-	color = vec4(pass_color * animation, 1);
+	color = texture(tex, pass_uv);
 }
 

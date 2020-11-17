@@ -6,6 +6,8 @@
     <ClCompile Include="src\GLFW\Window.cpp" />
     <ClCompile Include="src\GL\VAO.cpp" />
     <ClCompile Include="src\GL\Program.cpp" />
+    <ClCompile Include="src\GL\Texture.cpp" />
+    <ClCompile Include="src\Util\Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GLFW\GLFW.h" />
@@ -13,5 +15,7 @@
     <ClInclude Include="src\GL\VAO.h" />
     <ClInclude Include="src\gl.h" />
     <ClInclude Include="src\GL\Program.h" />
+    <ClInclude Include="src\GL\Texture.h" />
+    <ClInclude Include="src\Util\Image.h" />
   </ItemGroup>
 </Project>

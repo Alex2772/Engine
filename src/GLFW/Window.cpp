@@ -5,6 +5,8 @@
 #include "GL/VAO.h"
 #include <GLFW/glfw3.h>
 #include "GL/Program.h"
+#include "GL/Texture.h"
+#include "Util/Image.h"
 
 
 Window::Window(const std::string& title, int width, int height)
@@ -47,14 +49,15 @@ void Window::loop()
 		{0.5f, -0.5f, 0.f},
 	});
 
-	// 3х компонентный массив
+	// 2х компонентный массив
 	// неявно задаём трёхкомпонетные векторы
-	// цвета
+	// UV-координаты
+	// (см. 5 туториал)
 	vao.addVertexBufferObject({
-		{1, 0, 0}, // красный
-		{0, 0, 1}, // синий
-		{0, 1, 0}, // зелёный
-		{1, 0, 0}, // красный
+		{0, 1},
+		{0, 0},
+		{1, 1},
+		{1, 0},
 	});
 
 	// индексы (см. 4 туториал)
@@ -66,19 +69,20 @@ void Window::loop()
 	GL::Program first("first");
 	// название атрибута здесь должно совпадать с шейдером
 	first.bindAttribute(0, "position");
-	first.bindAttribute(1, "color");
+	first.bindAttribute(1, "uv");
 	first.link();
 
 	first.use();
 
-	float anim = 0.f;
+	GL::Texture texture;
+	Image image = Image::loadFromFile("dirt.png");
+	texture.setImage(image);
+	
 	while (!glfwWindowShouldClose(mWindow))
 	{
-		anim += 0.01;
-		first.setFloat("animation", glm::sin(anim) * 0.5f + 0.5f);
-		
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
+		texture.bind();
 		vao.draw();
 		glfwSwapBuffers(mWindow);
 		glfwPollEvents();

@@ -4,17 +4,17 @@
 // нулевой атрибут. Название атрибута должно совпадать с вызовом функции bindAttribute
 in vec3 position;
 // первый атрибут
-in vec3 color;
+in vec2 uv;
 
 // выход на вход в фрагментный шейдер
 // Приписка 'pass_' для моего удобства
-out vec3 pass_color;
+out vec2 pass_uv;
 
 // здесь не int!
 void main() {
 	// стандартная, типа глобальная переменная. В неё нужно записывать координату вершины
 	gl_Position = vec4(position, 1);
 
-	pass_color = color;
+	pass_uv = uv;
 }
 
