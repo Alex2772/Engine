@@ -1,4 +1,4 @@
-﻿#include "Program.h"
+#include "Program.h"
 #include <iterator>
 #include <fstream>
 #include <iostream>
@@ -6,8 +6,17 @@
 GL::Program::Program(const std::string& name)
 {
 	mProgram = glCreateProgram();
-	mVertexShader = loadShader("res/glsl/" + name + ".vert", GL_VERTEX_SHADER);
-	mFragmentShader = loadShader("res/glsl/" + name + ".frag", GL_FRAGMENT_SHADER);
+	
+	// Отлавливет исключения из loadShader
+	
+	try {
+		mVertexShader = loadShader("res/glsl/" + name + ".vert", GL_VERTEX_SHADER);
+		mFragmentShader = loadShader("res/glsl/" + name + ".frag", GL_FRAGMENT_SHADER);
+	} catch (std::runtime_error &ex) {
+		std::cout << ex.what() << "\n";
+		mVertexShader = 0;
+		mFragmentShader = 0;
+	}
 }
 
 GL::Program::~Program()
