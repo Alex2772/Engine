@@ -7,7 +7,8 @@ project(Engine)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src)
-file(GLOB_RECURSE SRCS src/*.cpp src/*.c src/*.h)
+
+aux_source_directory(./src ${SRCS})
 
 add_executable(Engine ${SRCS})
 
