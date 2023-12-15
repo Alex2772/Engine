@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src)
 
-aux_source_directory(./src ${SRCS})
+aux_source_directory(./src SRCS)
 
 add_executable(Engine ${SRCS})
 
